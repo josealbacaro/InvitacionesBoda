@@ -32,17 +32,49 @@
         }
 
         .intro-video {
-            max-width: 80vh;
-            max-height: 80vh;
-            width: auto;
-            height: auto;
-            border-radius: 24px;
-            box-shadow: 
-                0 0 60px rgba(108, 240, 243, 0.4),
-                0 0 120px rgba(59, 44, 154, 0.3),
-                0 20px 40px rgba(0, 0, 0, 0.5);
-            filter: drop-shadow(0 0 20px rgba(108, 240, 243, 0.2));
+            width: 90%;
+            max-width: 1200px;
+            height: 80vh;
+            border-radius: 0;
+            box-shadow: none;
+            filter: blur(0px);
             object-fit: cover;
+            position: relative;
+        }
+
+        /* Bordes difuminados */
+        .intro-video::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+        }
+
+        .video-wrapper {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 
+                0 0 40px rgba(0, 0, 0, 0.5),
+                0 0 80px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.4) 100%);
+            z-index: 2;
+            pointer-events: none;
+            border-radius: 30px;
         }
 
         .loading-overlay {
@@ -150,16 +182,18 @@
         </div>
 
         <!-- Video de introducción -->
-        <video 
-            id="introVideo" 
-            class="intro-video" 
-            muted 
-            playsinline
-            preload="auto"
-        >
-            <source src="assets/videos/entrada.webm" type="video/webm">
-            Tu navegador no soporta el video.
-        </video>
+        <div class="video-wrapper">
+            <video 
+                id="introVideo" 
+                class="intro-video" 
+                muted 
+                playsinline
+                preload="auto"
+            >
+                <source src="assets/videos/entrada.webm" type="video/webm">
+                Tu navegador no soporta el video.
+            </video>
+        </div>
 
         <!-- Botón para saltar -->
         <button class="skip-button" id="skipButton" onclick="skipToLanding()">
@@ -173,12 +207,10 @@
         const skipButton = document.getElementById('skipButton');
         let hasStarted = false;
 
-        // Función para ir a la landing page
+        // Función para ir a la landing page sin transición
         function goToLanding() {
-            document.body.classList.add('fade-out');
-            setTimeout(() => {
-                window.location.href = 'pages/landing.html';
-            }, 1000);
+            // Sin animación de fade, transición directa
+            window.location.href = 'pages/landing.html';
         }
 
         // Función para saltar el video
@@ -201,9 +233,10 @@
             }, 1500); // Dar tiempo para que se vea la pantalla de carga
         });
 
-        // Cuando el video termina
+        // Cuando el video termina - transición inmediata
         video.addEventListener('ended', function() {
-            setTimeout(goToLanding, 500); // Pequeña pausa antes de redirigir
+            // Transición inmediata sin delay
+            goToLanding();
         });
 
         // Fallback si el video no carga en 5 segundos
@@ -214,11 +247,21 @@
             }
         }, 5000);
 
-        // Precargar la landing page para transición más rápida
+        // Precargar la landing page y sus recursos para transición instantánea
         const link = document.createElement('link');
         link.rel = 'prefetch';
         link.href = 'pages/landing.html';
         document.head.appendChild(link);
+
+        // Precargar también la imagen de fondo de la landing
+        const imgLink = document.createElement('link');
+        imgLink.rel = 'prefetch';
+        imgLink.href = 'assets/images/Gemini_Generated_Image_s0d5q7s0d5q7s0d5.png';
+        document.head.appendChild(imgLink);
+
+        // Precargar imagen en memoria para transición instantánea
+        const preloadImg = new Image();
+        preloadImg.src = 'assets/images/Gemini_Generated_Image_s0d5q7s0d5q7s0d5.png';
     </script>
 </body>
 </html>
