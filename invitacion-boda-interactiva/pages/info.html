@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Información del Evento</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/landing.css">
+  <link rel="stylesheet" href="../css/form.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <script src="../lib/anime.min.js"></script>
+  <script src="../lib/particles.min.js"></script>
+</head>
+<body>
+  <div class="info-container">
+    <h1>Detalles del Evento</h1>
+    <div class="event-details">
+      <div class="detail-item">
+        <img src="../assets/images/icons/location.svg" alt="Ubicación">
+        <h2>Ubicación</h2>
+        <p>Finca / Salón — Dirección completa, Ciudad</p>
+      </div>
+      <div class="detail-item">
+        <img src="../assets/images/icons/calendar.svg" alt="Fecha">
+        <h2>Fecha & Hora</h2>
+        <p>Sábado, 12 de abril de 2026 · 17:00</p>
+      </div>
+      <div class="detail-item">
+        <img src="../assets/images/icons/gift.svg" alt="Lista de Regalos">
+        <h2>Lista de Regalos</h2>
+        <p>IBAN / Wishlist / Info adicional…</p>
+      </div>
+      <div class="detail-item">
+        <img src="../assets/images/icons/dress.svg" alt="Dress Code">
+        <h2>Dress Code</h2>
+        <p>Elegante con toque libre — ¡Trae tus mejores ganas!</p>
+      </div>
+    </div>
+    <div class="animation-container">
+      <h2>¡Disfruta de la Celebración!</h2>
+      <div id="particles-js"></div>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/animations.js"></script>
+  <script>
+    particlesJS.load('particles-js', '../assets/animations/particles.json', function() {
+      console.log('callback - particles.js config loaded');
+    });
+  </script>
+</body>
+</html>

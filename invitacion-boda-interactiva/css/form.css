@@ -1,0 +1,118 @@
+:root {
+  --bg-color: #f9f9f9;
+  --form-bg: rgba(255, 255, 255, 0.9);
+  --text-color: #333;
+  --accent-color: #8b5cf6;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --input-bg: rgba(240, 240, 240, 0.8);
+  --input-border: rgba(0, 0, 0, 0.2);
+  --button-bg: linear-gradient(135deg, var(--accent-color), #22d3ee);
+  --button-text-color: #fff;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-color);
+  margin: 0;
+  padding: 20px;
+}
+
+.form-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background: var(--form-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: var(--text-color);
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-color);
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  background: var(--input-bg);
+  color: var(--text-color);
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: var(--button-bg);
+  color: var(--button-text-color);
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #22d3ee;
+}
+
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  background: var(--input-bg);
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.chip:hover {
+  border-color: var(--accent-color);
+}
+
+.chip[aria-checked="true"] {
+  border-color: var(--accent-color);
+  background: rgba(139, 92, 246, 0.2);
+}
+
+.toast {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 8px;
+  display: none;
+}
+
+.toast.show {
+  display: block;
+}
+
+.toast.ok {
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  color: #dcfce7;
+}
+
+.toast.err {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #fee2e2;
+}

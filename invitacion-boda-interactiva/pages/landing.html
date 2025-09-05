@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación de Boda</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/landing.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../assets/fonts/custom-fonts.css">
+    <script src="../lib/anime.min.js" defer></script>
+    <script src="../js/animations.js" defer></script>
+</head>
+<body>
+    <div class="landing-container">
+        <img src="../assets/images/background.svg" alt="Fondo" class="background">
+        <div class="overlay">
+            <img src="../assets/images/couple.svg" alt="Pareja" class="couple-image">
+            <h1 class="title">¡Nos casamos!</h1>
+            <p class="subtitle">Te invitamos a celebrar nuestro amor.</p>
+            <a href="rsvp.html" class="cta-button">Confirma tu asistencia</a>
+        </div>
+    </div>
+
+    <script>
+        // Animaciones de entrada
+        document.addEventListener('DOMContentLoaded', () => {
+            anime({
+                targets: '.title',
+                translateY: [-100, 0],
+                opacity: [0, 1],
+                duration: 1500,
+                easing: 'easeOutExpo'
+            });
+
+            anime({
+                targets: '.subtitle',
+                translateY: [50, 0],
+                opacity: [0, 1],
+                duration: 1500,
+                easing: 'easeOutExpo',
+                delay: 500
+            });
+
+            anime({
+                targets: '.cta-button',
+                scale: [0, 1],
+                opacity: [0, 1],
+                duration: 1500,
+                easing: 'easeOutExpo',
+                delay: 1000
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Asistencia | Invitación de Boda</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/form.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../lib/anime.min.js" defer></script>
+    <script src="../js/validation.js" defer></script>
+    <script src="../js/google-sheets-api.js" defer></script>
+    <script src="../js/form-handler.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>¡Nos casamos!</h1>
+            <p>Por favor confirma tu asistencia</p>
+        </header>
+        <main>
+            <form id="rsvpForm" novalidate>
+                <div class="form-group">
+                    <label for="name">Nombre y Apellidos *</label>
+                    <input type="text" id="name" name="name" required placeholder="Tu nombre completo">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required placeholder="tucorreo@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="attendance">¿Asistirás? *</label>
+                    <select id="attendance" name="attendance" required>
+                        <option value="">Selecciona...</option>
+                        <option value="Sí">Sí, allí estaré 🎉</option>
+                        <option value="No">No podré asistir 😢</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="guests">Número de acompañantes (incluyéndote)</label>
+                    <input type="number" id="guests" name="guests" min="1" max="10" value="1">
+                </div>
+                <div class="form-group">
+                    <label>Preferencias alimentarias</label>
+                    <div class="choices" role="group" aria-label="Preferencias alimentarias">
+                        <button type="button" class="chip" data-choice="Vegetariano">Vegetariano</button>
+                        <button type="button" class="chip" data-choice="Vegano">Vegano</button>
+                        <button type="button" class="chip" data-choice="Sin gluten">Sin gluten</button>
+                        <button type="button" class="chip" data-choice="Alergias">Alergias</button>
+                    </div>
+                    <input type="hidden" id="dietary" name="dietary">
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje para los novios</label>
+                    <textarea id="message" name="message" placeholder="¡Deja aquí tu nota!"></textarea>
+                </div>
+                <button type="submit" class="btn">Enviar confirmación</button>
+                <div id="toast" class="toast" role="status" aria-live="polite"></div>
+            </form>
+        </main>
+        <footer>
+            <p class="meta">v1.0 • Invitación de boda interactiva</p>
+        </footer>
+    </div>
+    <script src="../js/animations.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación | Invitación de Boda</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/landing.css">
+    <link rel="stylesheet" href="../css/form.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../lib/anime.min.js" defer></script>
+    <script src="../js/main.js" defer></script>
+</head>
+<body>
+    <div class="confirmation-container">
+        <div class="confirmation-message">
+            <h1>¡Gracias por tu confirmación!</h1>
+            <p>Tu respuesta ha sido registrada exitosamente. Estamos emocionados de celebrar este día especial contigo.</p>
+            <p>Si tienes alguna pregunta o necesitas más información, no dudes en contactarnos.</p>
+            <a href="../pages/info.html" class="btn">Más información</a>
+        </div>
+        <div class="decorations">
+            <img src="../assets/images/decorations/flower1.svg" alt="Decoración 1" class="decoration">
+            <img src="../assets/images/decorations/flower2.svg" alt="Decoración 2" class="decoration">
+            <img src="../assets/images/decorations/rings.svg" alt="Anillos" class="decoration">
+        </div>
+    </div>
+
+    <script src="../js/animations.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            anime({
+                targets: '.confirmation-message',
+                opacity: [0, 1],
+                translateY: [-50, 0],
+                duration: 1000,
+                easing: 'easeInOutExpo'
+            });
+        });
+    </script>
+</body>
+</html>
