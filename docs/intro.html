@@ -32,36 +32,28 @@
         }
 
         .intro-video {
-            width: 90%;
-            max-width: 1200px;
-            height: 80vh;
+            /* Pantallas grandes: altura completa, cuadrado */
+            height: 100vh;
+            width: 100vh;
             border-radius: 20px;
             object-fit: cover;
-            position: relative;
-            /* Aplicar difuminado directamente en los bordes */
-            mask: radial-gradient(ellipse at center, black 60%, transparent 100%);
-            -webkit-mask: radial-gradient(ellipse at center, black 60%, transparent 100%);
         }
 
         .video-wrapper {
             position: relative;
             border-radius: 20px;
             overflow: hidden;
-            /* Sombra externa para dar profundidad */
-            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
+            /* Sin efectos, solo el contenedor */
         }
 
-        .video-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(ellipse at center, transparent 70%, rgba(0, 0, 0, 0.6) 100%);
-            z-index: 1;
-            pointer-events: none;
-            border-radius: 20px;
+        /* Responsive: pantallas verticales (móviles) */
+        @media (max-width: 768px), (orientation: portrait) {
+            .intro-video {
+                /* Pantallas verticales: ancho completo, cuadrado */
+                width: 100vw;
+                height: 100vw;
+                max-height: 100vh; /* Límite para no pasarse */
+            }
         }
 
         .loading-overlay {

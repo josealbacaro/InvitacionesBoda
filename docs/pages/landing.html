@@ -33,20 +33,46 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 90%;
-      max-width: 1200px;
-      height: 80vh;
+      /* Pantallas grandes: altura completa, cuadrado */
+      height: 100vh;
+      width: 100vh;
       background-image: url('../assets/images/Gemini_Generated_Image_s0d5q7s0d5q7s0d5.png');
-      background-size: contain;
+      background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       border-radius: 20px;
-      /* Aplicar los mismos bordes difuminados que el video */
-      mask: radial-gradient(ellipse at center, black 60%, transparent 100%);
-      -webkit-mask: radial-gradient(ellipse at center, black 60%, transparent 100%);
     }
 
-    .book-container {
+    .book-pages {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      /* Mismo tamaño que el fondo */
+      height: 100vh;
+      width: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    /* Responsive: pantallas verticales (móviles) */
+    @media (max-width: 768px), (orientation: portrait) {
+      .book-background {
+        /* Pantallas verticales: ancho completo, cuadrado */
+        width: 100vw;
+        height: 100vw;
+        max-height: 100vh; /* Límite para no pasarse */
+      }
+
+      .book-pages {
+        /* Mismo tamaño que el fondo */
+        width: 100vw;
+        height: 100vw;
+        max-height: 100vh;
+      }
+    }    .book-container {
       position: relative;
       width: 100%;
       height: 100vh;
@@ -180,11 +206,20 @@
     }
 
     /* Responsive */
-    @media (max-width: 768px) {
+    @media (max-width: 768px), (orientation: portrait) {
+      .book-background {
+        /* Pantallas verticales: ancho completo, cuadrado */
+        width: 100vw;
+        height: 100vw;
+        max-height: 100vh; /* Límite para no pasarse */
+      }
+
       .book-pages {
+        /* Mismo tamaño que el fondo */
+        width: 100vw;
+        height: 100vw;
+        max-height: 100vh;
         flex-direction: column;
-        width: 95%;
-        height: 90%;
       }
 
       .left-page, .right-page {
