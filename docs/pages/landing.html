@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="../css/animations.css">
   <link rel="stylesheet" href="../css/background-gradient.css">
   <link rel="stylesheet" href="../assets/fonts/custom-fonts.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
   <script src="../lib/anime.min.js"></script>
   <script src="../lib/particles.min.js"></script>
   <style>
@@ -29,32 +32,35 @@
     }
 
     .book-background {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      /* Pantallas grandes: altura completa, cuadrado */
-      height: 100vh;
-      width: 100vh;
+      position: relative;
+      width: 90vmin;
+      height: 90vmin;
+      max-width: 98vw;
+      max-height: 98vh;
+      margin: auto;
       background-image: url('../assets/images/Gemini_Generated_Image_s0d5q7s0d5q7s0d5.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       border-radius: 20px;
+      z-index: 1;
     }
-
     .book-pages {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      /* Mismo tamaño que el fondo */
-      height: 100vh;
-      width: 100vh;
+      inset: 0;
+      width: 90vmin;
+      height: 90vmin;
+      max-width: 98vw;
+      max-height: 98vh;
+      margin: auto;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: stretch;
+      justify-content: stretch;
       z-index: 2;
+      pointer-events: none;
+    }
+    .left-page, .right-page {
+      pointer-events: auto;
     }
 
     /* Responsive: pantallas verticales (móviles) */
@@ -83,6 +89,12 @@
       justify-content: center;
     }
 
+    .book-container.wedding-bg-fullscreen {
+      background: radial-gradient(circle at center, rgba(59, 44, 154, 0.3), rgba(0, 0, 0, 0.9));
+      min-height: 100vh;
+      width: 100vw;
+    }
+
     /* Página izquierda - nombres ya están en la imagen */
     .left-page {
       flex: 1;
@@ -104,68 +116,169 @@
       padding: 2rem;
       position: relative;
       /* Posicionamiento específico para la página derecha del libro */
-      padding-left: 1rem; /* Menos padding izquierdo para estar más centrado en la página */
-      padding-right: 3rem; /* Más padding derecho para no tocar el borde */
+    padding-left: 0.5rem; /* Menos padding izquierdo para estar más centrado en la página */
+    padding-right: 2rem; /* Más padding derecho para no tocar el borde */
+    box-sizing: border-box;
+    overflow: hidden;
     }
 
     .action-buttons {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1.5rem;
       align-items: center;
       opacity: 0;
       transform: translateY(30px);
       animation: fadeInUp 1.2s ease-out 0.3s forwards;
       /* Posicionamiento mejorado para la página derecha */
       margin-left: -1rem; /* Compensar para estar más centrado en la página derecha */
-      max-width: 280px;
+      max-width: 220px;
+      position: relative;
+    }
+
+    .action-buttons::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 215, 0, 0.6), 
+        transparent
+      );
+      border-radius: 2px;
+      animation: goldShimmer 2s ease-in-out infinite;
+    }
+
+    @keyframes goldShimmer {
+      0%, 100% { opacity: 0.3; transform: translateX(-50%) scaleX(0.8); }
+      50% { opacity: 1; transform: translateX(-50%) scaleX(1.2); }
     }
 
     .cta-btn {
-      background: linear-gradient(135deg, #8B4513, #DAA520);
-      color: #fff;
-      border: none;
-      padding: 1rem 2.5rem;
-      border-radius: 50px;
-      font-size: 1.1rem;
-      font-weight: 600;
+      background: linear-gradient(135deg, 
+        #1a1a2e 0%, 
+        #16213e 20%, 
+        #0f3460 40%, 
+        #1a1a2e 60%, 
+        #2d1b69 80%, 
+        #1a1a2e 100%
+      );
+      color: #f4e5c1;
+      border: 2px solid;
+      border-image: linear-gradient(45deg, #ffd700, #ffed4e, #daa520, #b8860b) 1;
+      padding: 0.75rem 1.8rem;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: 'Cinzel', 'Georgia', serif;
+      letter-spacing: 1px;
+      text-transform: uppercase;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 
+        0 8px 25px rgba(218, 165, 32, 0.3),
+        inset 0 1px 0 rgba(255, 215, 0, 0.2),
+        0 0 20px rgba(255, 215, 0, 0.1);
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      min-width: 250px;
+      gap: 0.6rem;
+      min-width: 180px;
+      max-width: 200px;
       justify-content: center;
-      font-family: 'Georgia', serif;
-      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 215, 0, 0.3), 
+        transparent
+      );
+      transition: left 0.6s ease;
+    }
+
+    .cta-btn:hover::before {
+      left: 100%;
     }
 
     .cta-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 35px rgba(139, 69, 19, 0.4);
-      background: linear-gradient(135deg, #A0522D, #FFD700);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 
+        0 15px 35px rgba(218, 165, 32, 0.5),
+        inset 0 1px 0 rgba(255, 215, 0, 0.4),
+        0 0 30px rgba(255, 215, 0, 0.3);
+      background: linear-gradient(135deg, 
+        #2d1b69 0%, 
+        #1a1a2e 20%, 
+        #0f3460 40%, 
+        #16213e 60%, 
+        #1a1a2e 80%, 
+        #2d1b69 100%
+      );
+      color: #fff;
+      border-image: linear-gradient(45deg, #ffed4e, #ffd700, #ffed4e, #daa520) 1;
     }
 
     .cta-btn.secondary {
-      background: linear-gradient(135deg, #654321, #CD853F);
+      background: linear-gradient(135deg, 
+        #2c1810 0%, 
+        #8b4513 30%, 
+        #cd853f 50%, 
+        #8b4513 70%, 
+        #2c1810 100%
+      );
+      border-image: linear-gradient(45deg, #cd853f, #daa520, #b8860b, #8b4513) 1;
     }
 
     .cta-btn.secondary:hover {
-      background: linear-gradient(135deg, #8B4513, #DEB887);
+      background: linear-gradient(135deg, 
+        #8b4513 0%, 
+        #cd853f 30%, 
+        #daa520 50%, 
+        #cd853f 70%, 
+        #8b4513 100%
+      );
+      border-image: linear-gradient(45deg, #daa520, #ffd700, #cd853f, #b8860b) 1;
     }
 
     .cta-btn.tertiary {
-      background: linear-gradient(135deg, #2F4F4F, #708090);
+      background: linear-gradient(135deg, 
+        #1e3a5f 0%, 
+        #2c5f2d 30%, 
+        #097969 50%, 
+        #2c5f2d 70%, 
+        #1e3a5f 100%
+      );
+      border-image: linear-gradient(45deg, #20b2aa, #3cb371, #2e8b57, #1e3a5f) 1;
     }
 
     .cta-btn.tertiary:hover {
-      background: linear-gradient(135deg, #483D8B, #9370DB);
+      background: linear-gradient(135deg, 
+        #2c5f2d 0%, 
+        #097969 30%, 
+        #20b2aa 50%, 
+        #097969 70%, 
+        #2c5f2d 100%
+      );
+      border-image: linear-gradient(45deg, #3cb371, #20b2aa, #2e8b57, #097969) 1;
     }
 
     .btn-icon {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.3));
     }
 
     /* Animaciones */
@@ -188,15 +301,26 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(218, 165, 32, 0.05);
+      background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.05) 0%, 
+        rgba(218, 165, 32, 0.08) 50%, 
+        rgba(184, 134, 11, 0.05) 100%
+      );
       opacity: 0;
-      transition: opacity 0.5s ease;
+      transition: all 0.6s ease;
       border-radius: 0 20px 20px 0;
       pointer-events: none;
+      box-shadow: inset 0 0 50px rgba(255, 215, 0, 0.1);
     }
 
     .right-page:hover::before {
       opacity: 1;
+      background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.08) 0%, 
+        rgba(218, 165, 32, 0.12) 50%, 
+        rgba(184, 134, 11, 0.08) 100%
+      );
+      box-shadow: inset 0 0 60px rgba(255, 215, 0, 0.2);
     }
 
     /* Responsive */
@@ -238,28 +362,42 @@
         max-width: none;
       }
 
+      .action-buttons::before {
+        display: none; /* Ocultar decoración en móvil */
+      }
+
       .cta-btn {
-        padding: 0.8rem 2rem;
-        font-size: 1rem;
-        min-width: 220px;
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+        max-width: 190px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
       }
     }
 
     @media (max-width: 480px) {
       .cta-btn {
-        min-width: 200px;
-        padding: 0.7rem 1.5rem;
-        font-size: 0.9rem;
+        min-width: 160px;
+        max-width: 180px;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.3px;
       }
 
       .action-buttons {
-        gap: 1rem;
+        gap: 1.2rem;
+      }
+
+      .btn-icon {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
-<body class="wedding-bg-fullscreen">
-  <div class="book-container">
+<body>
+  <div class="book-container wedding-bg-fullscreen">
     <!-- Imagen de fondo del libro con el mismo tamaño que el video -->
     <div class="book-background"></div>
     
@@ -273,17 +411,17 @@
       <div class="right-page">
         <div class="action-buttons">
           <a href="rsvp.html" class="cta-btn primary">
-            <span class="btn-icon">💌</span>
+            <span class="btn-icon">✨</span>
             Confirmar Asistencia
           </a>
           
           <a href="info.html" class="cta-btn secondary">
-            <span class="btn-icon">ℹ️</span>
+            <span class="btn-icon">📜</span>
             Ver Detalles
           </a>
           
           <a href="#" class="cta-btn tertiary" id="calendar-link">
-            <span class="btn-icon">📅</span>
+            <span class="btn-icon">�️</span>
             Agregar al Calendario
           </a>
         </div>
@@ -314,14 +452,30 @@
 
     // Animación adicional de entrada
     document.addEventListener('DOMContentLoaded', function() {
-      // Pequeña animación de zoom al cargar
+      // Animación de entrada más elegante
+      anime({
+        targets: '.book-background',
+        scale: [0.9, 1],
+        opacity: [0, 1],
+        duration: 1500,
+        easing: 'easeOutElastic(1, .8)',
+        delay: 200
+      });
+      
       anime({
         targets: '.book-pages',
         scale: [0.95, 1],
-        opacity: [0.8, 1],
-        duration: 1000,
-        easing: 'easeOutQuart'
+        opacity: [0.5, 1],
+        duration: 1200,
+        easing: 'easeOutQuart',
+        delay: 600
       });
+
+      // Efecto de brillo dorado sutil en el libro
+      setTimeout(() => {
+        const book = document.querySelector('.book-background');
+        book.style.filter = 'drop-shadow(0 0 20px rgba(255, 215, 0, 0.2))';
+      }, 2000);
     });
   </script>
 </body>
