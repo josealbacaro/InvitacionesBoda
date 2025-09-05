@@ -1,0 +1,118 @@
+/* Responsive styles for the wedding invitation project */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.card {
+    padding: 24px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+}
+
+.hero p {
+    font-size: 1rem;
+}
+
+.grid {
+    display: grid;
+    gap: 20px;
+}
+
+.panel {
+    padding: 20px;
+}
+
+.rsvp-title {
+    font-size: 1.5rem;
+}
+
+.sub {
+    font-size: 0.9rem;
+}
+
+form {
+    display: grid;
+    gap: 12px;
+}
+
+input, select, textarea {
+    padding: 12px;
+    font-size: 1rem;
+}
+
+.btn {
+    padding: 12px 16px;
+    font-size: 1rem;
+}
+
+.meta {
+    font-size: 0.8rem;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+    }
+
+    .rsvp-title {
+        font-size: 1.25rem;
+    }
+
+    .sub {
+        font-size: 0.8rem;
+    }
+
+    input, select, textarea {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+    }
+
+    .meta {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 0.8rem;
+    }
+
+    .rsvp-title {
+        font-size: 1rem;
+    }
+
+    .sub {
+        font-size: 0.7rem;
+    }
+
+    input, select, textarea {
+        font-size: 0.8rem;
+    }
+
+    .btn {
+        font-size: 0.8rem;
+    }
+
+    .meta {
+        font-size: 0.6rem;
+    }
+}

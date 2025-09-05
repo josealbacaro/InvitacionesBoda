@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Confirmación Recibida! | Jose & [Nombre]</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../assets/fonts/custom-fonts.css">
+    <script src="../lib/anime.min.js"></script>
+</head>
+<body>
+    <!-- Fondo de partículas -->
+    <div id="particles-js-container"></div>
+    
+    <!-- Canvas para confetti -->
+    <canvas id="confetti-canvas"></canvas>
+    
+    <div id="confirmation-container" class="container">
+        <main class="confirmation-content">
+            <!-- Animación de checkmark -->
+            <div id="checkmark-animation" class="checkmark-container">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark-check" fill="none" d="m14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+            </div>
+            
+            <!-- Mensaje de agradecimiento -->
+            <h2 id="thank-you-msg" class="thank-you-title">
+                ¡Gracias por confirmar tu asistencia!
+            </h2>
+            
+            <p class="thank-you-subtitle">
+                Hemos recibido tu confirmación correctamente. 
+                ¡Nos vemos el 16 de mayo de 2026!
+            </p>
+            
+            <!-- Información adicional -->
+            <div class="additional-info">
+                <div class="info-card">
+                    <div class="info-icon">📅</div>
+                    <div class="info-text">
+                        <h3>Fecha</h3>
+                        <p>16 de mayo de 2026</p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">📍</div>
+                    <div class="info-text">
+                        <h3>Lugar</h3>
+                        <p>Información próximamente</p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">🎉</div>
+                    <div class="info-text">
+                        <h3>Celebración</h3>
+                        <p>¡Prepárate para festejar!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Botones de acción -->
+            <div class="action-buttons">
+                <button id="back-btn" class="btn btn-secondary" onclick="window.location.href='landing.html'">
+                    ← Volver a la invitación
+                </button>
+                
+                <button id="info-btn" class="btn btn-primary" onclick="window.location.href='info.html'">
+                    Más información
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script src="../lib/particles.min.js"></script>
+    <script src="../js/animations.js"></script>
+    <script>
+        // Inicializar animaciones de confirmación al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animación del checkmark
+            anime({
+                targets: '#checkmark-animation',
+                scale: [0, 1],
+                opacity: [0, 1],
+                duration: 800,
+                easing: 'easeOutBounce',
+                delay: 200
+            });
+            
+            // Animación del mensaje
+            anime({
+                targets: '#thank-you-msg',
+                translateY: [30, 0],
+                opacity: [0, 1],
+                duration: 600,
+                easing: 'easeOutQuad',
+                delay: 600
+            });
+            
+            // Confetti después de un segundo
+            setTimeout(() => {
+                // Aquí se podría añadir la animación de confetti
+                console.log('🎉 Confetti time!');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
