@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jose & Emma - Invitación de Boda</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, rgba(59, 44, 154, 0.3), rgba(0, 0, 0, 0.9));
+        }
+
+        .intro-video {
+            max-width: 80vh;
+            max-height: 80vh;
+            width: auto;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: 
+                0 0 60px rgba(108, 240, 243, 0.4),
+                0 0 120px rgba(59, 44, 154, 0.3),
+                0 20px 40px rgba(0, 0, 0, 0.5);
+            filter: drop-shadow(0 0 20px rgba(108, 240, 243, 0.2));
+            object-fit: cover;
+        }
+
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-text {
+            color: #6cf0f3;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(108, 240, 243, 0.3);
+            border-top: 3px solid #6cf0f3;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .skip-button {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(59, 44, 154, 0.8);
+            color: white;
+            border: 2px solid rgba(108, 240, 243, 0.5);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 5;
+        }
+
+        .skip-button:hover {
+            background: rgba(108, 240, 243, 0.8);
+            border-color: rgba(108, 240, 243, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 240, 243, 0.3);
+        }
+
+        .fade-out {
+            animation: fadeOut 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .intro-video {
+                max-width: 90vw;
+                max-height: 70vh;
+                border-radius: 16px;
+            }
+
+            .skip-button {
+                bottom: 20px;
+                right: 20px;
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+
+            .loading-text {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <!-- Overlay de carga -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-text">Preparando tu invitación...</div>
+            <div class="loading-spinner"></div>
+        </div>
+
+        <!-- Video de introducción -->
+        <video 
+            id="introVideo" 
+            class="intro-video" 
+            muted 
+            playsinline
+            preload="auto"
+        >
+            <source src="assets/videos/entrada.webm" type="video/webm">
+            Tu navegador no soporta el video.
+        </video>
+
+        <!-- Botón para saltar -->
+        <button class="skip-button" id="skipButton" onclick="skipToLanding()">
+            Saltar →
+        </button>
+    </div>
+
+    <script>
+        const video = document.getElementById('introVideo');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const skipButton = document.getElementById('skipButton');
+        let hasStarted = false;
+
+        // Función para ir a la landing page
+        function goToLanding() {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = 'pages/landing.html';
+            }, 1000);
+        }
+
+        // Función para saltar el video
+        function skipToLanding() {
+            goToLanding();
+        }
+
+        // Cuando el video está listo para reproducirse
+        video.addEventListener('canplaythrough', function() {
+            setTimeout(() => {
+                loadingOverlay.classList.add('hidden');
+                if (!hasStarted) {
+                    video.play().catch(e => {
+                        console.log('Error reproduciendo video:', e);
+                        // Si no se puede reproducir automáticamente, mostrar control
+                        video.controls = true;
+                    });
+                    hasStarted = true;
+                }
+            }, 1500); // Dar tiempo para que se vea la pantalla de carga
+        });
+
+        // Cuando el video termina
+        video.addEventListener('ended', function() {
+            setTimeout(goToLanding, 500); // Pequeña pausa antes de redirigir
+        });
+
+        // Fallback si el video no carga en 5 segundos
+        setTimeout(() => {
+            if (!hasStarted) {
+                console.log('Video tardó mucho en cargar, redirigiendo...');
+                goToLanding();
+            }
+        }, 5000);
+
+        // Precargar la landing page para transición más rápida
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = 'pages/landing.html';
+        document.head.appendChild(link);
+    </script>
+</body>
+</html>
