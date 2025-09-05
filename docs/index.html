@@ -2,44 +2,21 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>¡Nos casamos! | RSVP</title>
-  <meta name="description" content="Invitación interactiva de boda con formulario RSVP." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg: #0b1020;
-      --panel: #101735;
-      --accent: #8b5cf6; /* violeta "vibe coding" */
-      --accent-2: #22d3ee; /* cian */
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --ok: #22c55e;
-      --warn: #f59e0b;
-      --err: #ef4444;
-      --radius: 18px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jose & Emma - Invitación de Boda Interactiva</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <script>
+    // Redirigir automáticamente a la landing page
+    window.location.href = 'pages/landing.html';
+  </script>
+</head>
+<body>
+  <div class="loading-container">
+    <h1>Cargando invitación...</h1>
+    <p>Si no eres redirigido automáticamente, <a href="pages/landing.html">haz clic aquí</a></p>
+  </div>
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color:var(--text); background: radial-gradient(1200px 600px at 20% -10%, rgba(34,211,238,.12), transparent 60%),
-                         radial-gradient(1200px 600px at 100% 10%, rgba(139,92,246,.10), transparent 60%),
-                         var(--bg);
-      display:flex; align-items:center; justify-content:center; padding:24px;
-    }
-    .card{
-      width:min(960px, 100%);
-      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-    .hero{
+</html>
       position:relative; padding:40px 28px 24px; text-align:center; background:linear-gradient(180deg, rgba(139,92,246,.18), rgba(34,211,238,.10));
       border-bottom:1px solid rgba(255,255,255,.08);
     }

@@ -3,51 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmación de Asistencia | Invitación de Boda</title>
+    <title>Confirmación de Asistencia | Jose & [Nombre]</title>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/form.css">
     <link rel="stylesheet" href="../css/animations.css">
     <link rel="stylesheet" href="../css/responsive.css">
-    <script src="../lib/anime.min.js" defer></script>
-    <script src="../js/validation.js" defer></script>
-    <script src="../js/google-sheets-api.js" defer></script>
-    <script src="../js/form-handler.js" defer></script>
+    <link rel="stylesheet" href="../assets/fonts/custom-fonts.css">
+    <script src="../lib/anime.min.js"></script>
+    <script src="../js/get-form-data.js"></script>
 </head>
 <body>
+    <!-- Fondo de partículas sutil -->
+    <div id="particles-js-container"></div>
+    
     <div class="container">
         <header class="header">
-            <h1>¡Nos casamos!</h1>
-            <p>Por favor confirma tu asistencia</p>
+            <h1>Confirma tu Asistencia</h1>
+            <p>Nos encantaría tenerte en nuestro día especial</p>
         </header>
+        
         <main>
-            <form id="rsvpForm" novalidate>
+            <form id="rsvp-form" class="rsvp-form" novalidate>
+                <!-- Campo Nombre -->
                 <div class="form-group">
-                    <label for="name">Nombre y Apellidos *</label>
-                    <input type="text" id="name" name="name" required placeholder="Tu nombre completo">
+                    <label for="input-name">Nombre completo *</label>
+                    <input 
+                        type="text" 
+                        name="name" 
+                        id="input-name"
+                        placeholder="Tu nombre completo" 
+                        required
+                        class="form-input"
+                    >
+                    <span class="error-message" id="name-error"></span>
                 </div>
+
+                <!-- Campo Email -->
                 <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required placeholder="tucorreo@email.com">
+                    <label for="input-email">Email *</label>
+                    <input 
+                        type="email" 
+                        name="email" 
+                        id="input-email"
+                        placeholder="tucorreo@email.com" 
+                        required
+                        class="form-input"
+                    >
+                    <span class="error-message" id="email-error"></span>
                 </div>
+
+                <!-- Campo Asistencia -->
                 <div class="form-group">
-                    <label for="attendance">¿Asistirás? *</label>
-                    <select id="attendance" name="attendance" required>
-                        <option value="">Selecciona...</option>
-                        <option value="Sí">Sí, allí estaré 🎉</option>
-                        <option value="No">No podré asistir 😢</option>
+                    <label for="input-attendance">¿Asistirás? *</label>
+                    <select 
+                        name="attendance" 
+                        id="input-attendance" 
+                        required
+                        class="form-select"
+                    >
+                        <option value="">Selecciona una opción</option>
+                        <option value="si">Sí, asistiré 🎉</option>
+                        <option value="no">No podré asistir 😢</option>
                     </select>
+                    <span class="error-message" id="attendance-error"></span>
                 </div>
+
+                <!-- Campo Comentarios -->
                 <div class="form-group">
-                    <label for="guests">Número de acompañantes (incluyéndote)</label>
-                    <input type="number" id="guests" name="guests" min="1" max="10" value="1">
+                    <label for="input-message">Comentarios (opcional)</label>
+                    <textarea 
+                        name="message" 
+                        id="input-message"
+                        placeholder="Mensaje especial, alergias alimentarias, etc."
+                        class="form-textarea"
+                        rows="4"
+                    ></textarea>
                 </div>
+
+                <!-- Botón Enviar -->
                 <div class="form-group">
-                    <label>Preferencias alimentarias</label>
-                    <div class="choices" role="group" aria-label="Preferencias alimentarias">
-                        <button type="button" class="chip" data-choice="Vegetariano">Vegetariano</button>
-                        <button type="button" class="chip" data-choice="Vegano">Vegano</button>
-                        <button type="button" class="chip" data-choice="Sin gluten">Sin gluten</button>
-                        <button type="button" class="chip" data-choice="Alergias">Alergias</button>
+                    <button type="submit" id="submit-btn" class="submit-btn">
+                        <span class="btn-text">Enviar Confirmación</span>
+                        <span class="btn-loading" style="display: none;">Enviando...</span>
+                    </button>
+                </div>
+            </form>
+        </main>
+        
+        <!-- Link para volver -->
+        <footer class="footer">
+            <a href="landing.html" class="back-link">← Volver a la invitación</a>
+        </footer>
+    </div>
+
+    <script src="../lib/particles.min.js"></script>
+    <script src="../js/validation.js"></script>
+    <script src="../js/google-sheets-api.js"></script>
+    <script src="../js/form-handler.js"></script>
+</body>
+</html>
                     </div>
                     <input type="hidden" id="dietary" name="dietary">
                 </div>
