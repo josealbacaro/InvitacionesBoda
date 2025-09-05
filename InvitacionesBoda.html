@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>¡Nos casamos! | RSVP</title>
+  <meta name="description" content="Invitación interactiva de boda con formulario RSVP." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b1020;
+      --panel: #101735;
+      --accent: #8b5cf6; /* violeta "vibe coding" */
+      --accent-2: #22d3ee; /* cian */
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --err: #ef4444;
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text); background: radial-gradient(1200px 600px at 20% -10%, rgba(34,211,238,.12), transparent 60%),
+                         radial-gradient(1200px 600px at 100% 10%, rgba(139,92,246,.10), transparent 60%),
+                         var(--bg);
+      display:flex; align-items:center; justify-content:center; padding:24px;
+    }
+    .card{
+      width:min(960px, 100%);
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .hero{
+      position:relative; padding:40px 28px 24px; text-align:center; background:linear-gradient(180deg, rgba(139,92,246,.18), rgba(34,211,238,.10));
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .hero h1{ margin:0; font-weight:800; letter-spacing:.3px; font-size: clamp(28px, 5vw, 42px); }
+    .hero p{ margin:8px auto 0; color:var(--muted); max-width:780px; font-size:clamp(14px, 2.5vw, 16px)}
+    .grid{ display:grid; gap:20px; padding:24px; grid-template-columns: 1.2fr .8fr; }
+    @media (max-width: 880px){ .grid{ grid-template-columns: 1fr; } }
+
+    .panel{
+      background: rgba(16,23,53,.72);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: calc(var(--radius) - 8px);
+      padding: 20px; backdrop-filter: blur(6px);
+    }
+
+    .rsvp-title{ display:flex; align-items:center; gap:10px; font-weight:700; font-size:18px; margin:0 0 8px; }
+    .rsvp-title .dot{ width:10px; height:10px; border-radius:999px; background:conic-gradient(from 90deg, var(--accent), var(--accent-2)); box-shadow:0 0 12px rgba(139,92,246,.7); }
+    .sub{ color:var(--muted); margin:0 0 18px; font-size:14px }
+
+    form{ display:grid; gap:12px }
+    label{ font-size:13px; color:#cbd5e1; margin-bottom:4px; display:block; letter-spacing:.2px }
+    input, select, textarea{
+      width:100%; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12);
+      background:rgba(9,12,28,.7); color:var(--text); outline: none;
+    }
+    input::placeholder, textarea::placeholder{ color:#6b7280 }
+    textarea{ min-height:92px; resize:vertical }
+
+    .row{ display:grid; grid-template-columns:1fr 1fr; gap:12px }
+    @media (max-width:640px){ .row{ grid-template-columns:1fr } }
+
+    .choices{ display:flex; gap:8px; flex-wrap:wrap }
+    .chip{
+      border:1px solid rgba(255,255,255,.14); padding:10px 14px; border-radius:999px; cursor:pointer; user-select:none;
+      background:rgba(9,12,28,.6); font-size:14px
+    }
+    .chip[aria-checked="true"]{ border-color:var(--accent); box-shadow:0 0 0 2px rgba(139,92,246,.25) inset }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px; 
+      padding:12px 16px; border-radius:14px; border:none; cursor:pointer;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2)); color:#0b1020; font-weight:800; letter-spacing:.2px;
+    }
+    .btn:disabled{ opacity:.6; cursor:progress }
+
+    .meta{ font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:12px; color:var(--muted) }
+
+    .timeline{ display:grid; gap:10px }
+    .item{ display:flex; gap:12px; align-items:flex-start }
+    .item .t-dot{ width:10px; height:10px; border-radius:999px; background:var(--accent); margin-top:6px; box-shadow:0 0 12px rgba(139,92,246,.7) }
+    .item .t-body{ background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); padding:12px 14px; border-radius:12px; flex:1 }
+    .item h4{ margin:0 0 6px; font-size:15px }
+    .item p{ margin:0; color:var(--muted); font-size:14px }
+
+    .toast{ margin-top:10px; padding:12px 14px; border-radius:12px; display:none }
+    .toast.show{ display:block }
+    .toast.ok{ background: rgba(34,197,94,.15); border:1px solid rgba(34,197,94,.35); color:#dcfce7 }
+    .toast.err{ background: rgba(239,68,68,.15); border:1px solid rgba(239,68,68,.35); color:#fee2e2 }
+  </style>
+</head>
+<body>
+  <div class="card" role="region" aria-label="Invitación de boda">
+    <div class="hero">
+      <h1>👩‍❤️‍👨 ¡Nos casamos! — <span style="font-family:'JetBrains Mono'; font-weight:600">RSVP</span></h1>
+      <p>
+        Estamos muy ilusionados de compartir este día contigo. Por favor confirma tu asistencia.
+        Al enviar, tus datos se registrarán automáticamente en nuestra hoja y te mostraremos confirmación.
+      </p>
+    </div>
+
+    <div class="grid">
+      <section class="panel" aria-labelledby="rsvp-title">
+        <h2 id="rsvp-title" class="rsvp-title"><span class="dot"></span> Confirma tu asistencia</h2>
+        <p class="sub">Rellena el formulario. Tardarás menos de 1 minuto.</p>
+
+        <form id="rsvpForm" novalidate>
+          <div class="row">
+            <div>
+              <label for="name">Nombre y apellidos *</label>
+              <input id="name" name="name" type="text" placeholder="Tu nombre" required />
+            </div>
+            <div>
+              <label for="email">Email *</label>
+              <input id="email" name="email" type="email" placeholder="tucorreo@email.com" required />
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="attendance">¿Asistirás? *</label>
+              <select id="attendance" name="attendance" required>
+                <option value="">Selecciona…</option>
+                <option value="Sí">Sí, allí estaré 🎉</option>
+                <option value="No">No podré asistir 😢</option>
+              </select>
+            </div>
+            <div>
+              <label for="guests">Número de acompañantes (incluyéndote)</label>
+              <input id="guests" name="guests" type="number" min="1" max="10" value="1" />
+            </div>
+          </div>
+
+          <div>
+            <label>Preferencias alimentarias</label>
+            <div class="choices" role="group" aria-label="Preferencias alimentarias">
+              <button type="button" class="chip" data-choice="Vegetariano">Vegetariano</button>
+              <button type="button" class="chip" data-choice="Vegano">Vegano</button>
+              <button type="button" class="chip" data-choice="Sin gluten">Sin gluten</button>
+              <button type="button" class="chip" data-choice="Alergias">Alergias</button>
+            </div>
+            <input type="hidden" id="dietary" name="dietary" />
+          </div>
+
+          <div>
+            <label for="message">Mensaje para los novios</label>
+            <textarea id="message" name="message" placeholder="¡Deja aquí tu nota!"></textarea>
+          </div>
+
+          <button id="submitBtn" class="btn" type="submit">Enviar confirmación</button>
+          <div id="toast" class="toast" role="status" aria-live="polite"></div>
+          <p class="meta">v1.0 • Front-end simple (HTML+CSS+JS). Backend: Web App de Google Apps Script.</p>
+        </form>
+      </section>
+
+      <aside class="panel" aria-label="Detalles del evento">
+        <div class="timeline">
+          <div class="item">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <h4>📍 Lugar</h4>
+              <p>Finca / Salón — Dirección completa, Ciudad</p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <h4>📆 Fecha & hora</h4>
+              <p>Sábado, 12 de abril de 2026 · 17:00</p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <h4>🎁 Lista de regalos</h4>
+              <p>IBAN / Wishlist / Info adicional…</p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <h4>👗 Dress code</h4>
+              <p>Elegante con toque libre — ¡Trae tus mejores ganas!</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    // ======= Configura tu ENDPOINT de Google Apps Script aquí =======
+    const SCRIPT_URL = "PASTE_YOUR_APPS_SCRIPT_WEBAPP_URL_HERE";
+
+    // Selección tipo "chips" para dietas
+    const chips = document.querySelectorAll('.chip');
+    const dietaryInput = document.getElementById('dietary');
+    const selected = new Set();
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const v = chip.dataset.choice;
+        if(selected.has(v)) { selected.delete(v); chip.setAttribute('aria-checked','false'); }
+        else { selected.add(v); chip.setAttribute('aria-checked','true'); }
+        dietaryInput.value = Array.from(selected).join(', ');
+      });
+    });
+
+    // Utilidad de toasts
+    const toast = document.getElementById('toast');
+    function showToast(msg, type='ok'){
+      toast.textContent = msg; toast.className = `toast show ${type}`;
+    }
+
+    // Validación y envío
+    const form = document.getElementById('rsvpForm');
+    const submitBtn = document.getElementById('submitBtn');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if(!form.reportValidity()) return;
+
+      submitBtn.disabled = true;
+      showToast('Enviando…', 'ok');
+
+      const payload = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        attendance: form.attendance.value,
+        guests: Number(form.guests.value || '1'),
+        dietary: form.dietary.value.trim(),
+        message: form.message.value.trim(),
+        ua: navigator.userAgent
+      };
+
+      try{
+        const res = await fetch(SCRIPT_URL, {
+          method:'POST',
+          headers:{ 'Content-Type':'text/plain' },
+          body: JSON.stringify(payload)
+        });
+
+        // Si el backend devuelve JSON con {ok:true}
+        if(res.ok){
+          let data = {};
+          try { data = await res.json(); } catch(_){}
+          const ok = data.ok !== false; // trata como ok si no llega JSON
+          if(ok){
+            showToast('¡Gracias! Tu confirmación ha sido registrada ✅', 'ok');
+            form.reset(); selected.clear(); chips.forEach(c => c.setAttribute('aria-checked','false'));
+          } else {
+            showToast('No se pudo registrar. Inténtalo de nuevo más tarde.', 'err');
+          }
+        } else {
+          showToast('Servidor no disponible ahora mismo. Prueba en unos minutos.', 'err');
+        }
+      }catch(err){
+        console.error(err);
+        showToast('Error de red. Comprueba tu conexión e inténtalo de nuevo.', 'err');
+      }finally{
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
