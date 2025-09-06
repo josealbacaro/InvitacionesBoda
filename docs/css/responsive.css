@@ -1,9 +1,96 @@
-/* Responsive styles for the wedding invitation project */
+/* responsive.css - Media queries para todas las páginas */
+
+/* === VARIABLES ÁUREAS RESPONSIVAS === */
+:root {
+  /* Variables específicas para responsive basadas en Fibonacci */
+  --fib-mobile-8: 8px;
+  --fib-mobile-13: 13px;
+  --fib-mobile-21: 21px;
+  --fib-mobile-34: 34px;
+  --fib-mobile-55: 55px;
+  --fib-mobile-89: 89px;
+  --fib-mobile-144: 144px;
+  
+  /* Proporción áurea móvil */
+  --golden-mobile: 1.618;
+  --golden-mobile-inv: 0.618;
+}
+
+/* === RESPONSIVE LANDING === */
+/* Responsive: pantallas verticales (móviles) */
+@media (max-width: 768px), (orientation: portrait) {
+  .book-background {
+    /* Pantallas verticales: ancho completo, cuadrado */
+    width: 100vw;
+    height: 100vw;
+    max-height: 100vh; /* Límite para no pasarse */
+  }
+
+  .book-pages {
+    /* Mismo tamaño que el fondo */
+    width: 100vw;
+    height: 100vw;
+    max-height: 100vh;
+    flex-direction: column;
+  }
+
+  .left-page, .right-page {
+    flex: none;
+    height: 50%;
+    width: 100%;
+  }
+
+  .right-page {
+    padding: calc(var(--fib-mobile-21) * var(--golden-mobile-inv)) var(--fib-mobile-21) 0 var(--fib-mobile-21); /* ~13px 21px 0 21px */
+    align-items: center;
+  }
+
+  .action-buttons {
+    align-items: center;
+    max-width: 100%;
+    width: 100%;
+    margin-left: 0;
+    gap: var(--fib-mobile-21); /* ~21px gap para móvil */
+    padding: var(--fib-mobile-13) var(--fib-mobile-8); /* Padding reducido en móvil */
+  }
+
+  .action-buttons::before {
+    display: none; /* Ocultar decoración en móvil */
+  }
+
+  .cta-btn {
+    padding: var(--fib-mobile-13) var(--fib-mobile-8); /* ~13px 8px */
+    font-size: calc(var(--fib-mobile-21) * 1rem / 16); /* ~1.31rem */
+    font-weight: 600;
+    letter-spacing: 0.03em; /* Espaciado reducido para móvil */
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-btn {
+    min-width: var(--fib-mobile-89); /* 89px */
+    max-width: var(--fib-mobile-144); /* 144px */
+    padding: var(--fib-mobile-8) calc(var(--fib-mobile-13) * var(--golden-mobile-inv)); /* 8px ~8px */
+    font-size: calc(var(--fib-mobile-8) * 1rem / 16); /* ~0.5rem */
+    font-weight: 600;
+    letter-spacing: calc(var(--fib-mobile-8) * 0.05px); /* ~0.4px */
+  }
+
+  .action-buttons {
+    gap: var(--fib-mobile-8); /* 8px */
+  }
+
+  .btn-icon {
+    font-size: calc(var(--fib-mobile-13) * 1rem / 16); /* ~0.81rem */
+  }
+}
+
+/* === RESPONSIVE GENERAL === */
 
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-fantasy-body, 'Cormorant Garamond', 'Georgia', serif);
 }
 
 .card {
@@ -47,11 +134,6 @@ input, select, textarea {
     font-size: 1rem;
 }
 
-.btn {
-    padding: 12px 16px;
-    font-size: 1rem;
-}
-
 .meta {
     font-size: 0.8rem;
 }
@@ -79,7 +161,12 @@ input, select, textarea {
     }
 
     .btn {
+        color: #3b2c9a; /* Mantener color azul en móvil */
         font-size: 0.9rem;
+    }
+
+    .btn:hover {
+        color: #2d1b69; /* Hover azul más oscuro en móvil */
     }
 
     .meta {
@@ -105,10 +192,6 @@ input, select, textarea {
     }
 
     input, select, textarea {
-        font-size: 0.8rem;
-    }
-
-    .btn {
         font-size: 0.8rem;
     }
 

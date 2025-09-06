@@ -4,21 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jose & Emma - Invitación de Boda</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/buttons.css" />
+    <link rel="stylesheet" href="css/background-gradient.css" />
+    <link rel="stylesheet" href="assets/fonts/custom-fonts.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* Estilos específicos del video de introducción */
         body {
             background: #000;
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             overflow: hidden;
-            font-family: 'Inter', sans-serif;
         }
 
         .video-container {
@@ -43,7 +41,6 @@
             position: relative;
             border-radius: 20px;
             overflow: hidden;
-            /* Sin efectos, solo el contenedor */
         }
 
         /* Responsive: pantallas verticales (móviles) */
@@ -101,22 +98,11 @@
             position: absolute;
             bottom: 30px;
             right: 30px;
-            background: rgba(59, 44, 154, 0.8);
-            color: white;
-            border: 2px solid rgba(108, 240, 243, 0.5);
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             z-index: 5;
         }
 
         .skip-button:hover {
-            background: rgba(108, 240, 243, 0.8);
-            border-color: rgba(108, 240, 243, 0.8);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(108, 240, 243, 0.3);
         }
@@ -175,8 +161,9 @@
         </div>
 
         <!-- Botón para saltar -->
-        <button class="skip-button" id="skipButton" onclick="skipToLanding()">
-            Saltar →
+        <button class="btn tertiary skip-button" id="skipButton" onclick="skipToLanding()">
+            <span class="btn-icon">⏭️</span>
+            Saltar
         </button>
     </div>
 

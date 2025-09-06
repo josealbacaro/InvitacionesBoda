@@ -1,4 +1,4 @@
-/* custom-fonts.css - Sistema de Fuentes Fantásticas Unificado */
+/* custom-fonts.css - Fuentes fantásticas y legibles para la invitación */
 
 /* === FUENTES FANTÁSTICAS === */
 /* Importar Google Fonts con temática mágica y elegante */
@@ -23,10 +23,9 @@
   --font-fantasy-script-playful: 'Alex Brush', cursive;
   --font-fantasy-script-delicate: 'Tangerine', cursive;
   
-  /* Fallbacks seguros del sistema */
+  /* Fallbacks seguros */
   --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-serif-safe: 'Georgia', 'Times New Roman', serif;
-  --font-monospace: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
 }
 
 /* === ESTILOS BASE FANTÁSTICOS === */
@@ -119,73 +118,6 @@ h4, h5, h6, .subtitle, .wedding-date {
   opacity: 0.9;
 }
 
-/* === TEXTO GENERAL FANTÁSTICO === */
-/* Texto del cuerpo */
-p, .body-text {
-  font-family: var(--font-fantasy-body);
-  font-weight: 400;
-  line-height: 1.6;
-  letter-spacing: 0.01em;
-}
-
-/* Botones generales */
-button, .btn, input[type="submit"] {
-  font-family: var(--font-fantasy-primary);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-/* Formularios */
-input, select, textarea, label {
-  font-family: var(--font-fantasy-body);
-  font-weight: 400;
-  letter-spacing: 0.01em;
-}
-
-/* Labels de formulario */
-label {
-  font-family: var(--font-fantasy-mystical);
-  font-weight: 500;
-}
-
-/* Texto pequeño */
-small, .text-small {
-  font-family: var(--font-fantasy-body);
-  font-weight: 400;
-  font-size: 0.875rem;
-  line-height: 1.5;
-}
-
-/* Código y monospace */
-code, pre, .monospace {
-  font-family: var(--font-monospace);
-  font-weight: 400;
-  letter-spacing: 0;
-}
-
-/* === CLASES DE UTILIDAD DE FUENTES FANTÁSTICAS === */
-.font-primary { font-family: var(--font-fantasy-primary); }
-.font-body { font-family: var(--font-fantasy-body); }
-.font-mystical { font-family: var(--font-fantasy-mystical); }
-.font-ornate { font-family: var(--font-fantasy-ornate); }
-.font-script-elegant { font-family: var(--font-fantasy-script-elegant); }
-.font-script-playful { font-family: var(--font-fantasy-script-playful); }
-.font-script-delicate { font-family: var(--font-fantasy-script-delicate); }
-.font-system { font-family: var(--font-system); }
-.font-mono { font-family: var(--font-monospace); }
-
-/* Clases de utilidad para peso de fuente */
-.font-thin { font-weight: 100; }
-.font-extralight { font-weight: 200; }
-.font-light { font-weight: 300; }
-.font-normal { font-weight: 400; }
-.font-medium { font-weight: 500; }
-.font-semibold { font-weight: 600; }
-.font-bold { font-weight: 700; }
-.font-extrabold { font-weight: 800; }
-.font-black { font-weight: 900; }
-
 /* === EFECTOS TIPOGRÁFICOS MÁGICOS === */
 /* Efectos especiales para texto fantástico */
 .text-glow {
@@ -215,46 +147,75 @@ code, pre, .monospace {
   font-variant-ligatures: common-ligatures discretionary-ligatures;
 }
 
-/* === ESTILOS ESPECÍFICOS PARA LA INVITACIÓN === */
-
-/* Nombres de los novios */
-.couple-names {
-  font-family: var(--font-fantasy-primary);
-  font-weight: 800;
-  font-size: 3rem;
-  letter-spacing: 0.05em;
-  line-height: 1.1;
-  text-transform: uppercase;
-  font-variant: small-caps;
+/* Texto script para elementos decorativos */
+.script, .decorative-text {
+  font-family: var(--font-script);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
 }
 
-/* Fecha de la boda */
-.wedding-date {
-  font-family: var(--font-fantasy-script-elegant);
-  font-weight: 600;
-  font-size: 1.5rem;
-  letter-spacing: 0.02em;
-}
-
-/* Texto de invitación */
-.invitation-text {
-  font-family: var(--font-fantasy-body);
+/* Texto del cuerpo */
+p, .body-text {
+  font-family: var(--font-primary);
   font-weight: 400;
-  font-size: 1.125rem;
-  line-height: 1.7;
+  line-height: 1.6;
+  letter-spacing: -0.005em;
+}
+
+/* Botones */
+button, .btn, input[type="submit"] {
+  font-family: var(--font-primary);
+  font-weight: 600;
   letter-spacing: 0.01em;
 }
 
-/* Texto elegante para secciones especiales */
-.elegant-text {
-  font-family: var(--font-fantasy-ornate);
+/* Formularios */
+input, select, textarea, label {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+
+/* Labels de formulario */
+label {
   font-weight: 500;
-  font-style: italic;
-  letter-spacing: 0.02em;
+}
+
+/* Texto pequeño */
+small, .text-small {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 0.875rem;
   line-height: 1.5;
 }
 
-/* === MEJORAS DE LEGIBILIDAD === */
+/* Código y monospace */
+code, pre, .monospace {
+  font-family: var(--font-monospace);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Clases de utilidad para peso de fuente */
+.font-thin { font-weight: 100; }
+.font-extralight { font-weight: 200; }
+.font-light { font-weight: 300; }
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
+.font-black { font-weight: 900; }
+
+/* Clases de utilidad para familias de fuente */
+.font-primary { font-family: var(--font-primary); }
+.font-heading { font-family: var(--font-heading); }
+.font-script { font-family: var(--font-script); }
+.font-system { font-family: var(--font-system); }
+.font-mono { font-family: var(--font-monospace); }
+
+/* Mejoras de legibilidad */
 .text-smooth {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -268,7 +229,50 @@ code, pre, .monospace {
   text-rendering: optimizeLegibility;
 }
 
-/* === RESPONSIVE TYPOGRAPHY === */
+/* Estilos específicos para la invitación */
+
+/* Nombres de los novios */
+.couple-names {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 3rem;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--primary-violet), var(--primary-cyan));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Fecha de la boda */
+.wedding-date {
+  font-family: var(--font-script);
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+  color: var(--primary-violet);
+}
+
+/* Texto de invitación */
+.invitation-text {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  letter-spacing: -0.005em;
+  color: var(--text-dark);
+}
+
+/* Texto elegante para secciones especiales */
+.elegant-text {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+}
+
+/* Media queries para responsive typography */
 @media (max-width: 768px) {
   .couple-names {
     font-size: 2.5rem;
@@ -297,27 +301,27 @@ code, pre, .monospace {
   }
 }
 
-/* === PRELOAD DE FUENTES CRÍTICAS === */
+/* Preload de fuentes críticas */
 @media screen {
   /* Precargar fuentes más importantes */
   body::before {
     content: '';
-    font-family: var(--font-fantasy-primary);
-    font-family: var(--font-fantasy-body);
-    font-family: var(--font-fantasy-script-elegant);
+    font-family: var(--font-primary);
+    font-family: var(--font-heading);
+    font-family: var(--font-script);
     position: absolute;
     left: -9999px;
     visibility: hidden;
   }
 }
 
-/* === FALLBACK PARA DISPOSITIVOS SIN WEB FONTS === */
+/* Fallback para dispositivos que no soportan web fonts */
 @supports not (font-display: swap) {
   body {
     font-family: var(--font-system);
   }
   
   h1, h2, h3 {
-    font-family: var(--font-serif-safe);
+    font-family: Georgia, 'Times New Roman', serif;
   }
 }

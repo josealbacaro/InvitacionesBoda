@@ -1,6 +1,37 @@
 /* animations.css - Animaciones y transiciones específicas */
 
-/* Animaciones para la página de confirmación */
+/* === FONDO DE PARTÍCULAS === */
+/* Contenedor para el sistema de partículas */
+#particles-js-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* === ANIMACIONES DEL LANDING === */
+/* Animación de shimmer dorado */
+@keyframes goldShimmer {
+  0%, 100% { opacity: 0.3; transform: translateX(-50%) scaleX(0.8); }
+  50% { opacity: 1; transform: translateX(-50%) scaleX(1.2); }
+}
+
+/* Animación de entrada desde abajo */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === ANIMACIONES DE CONFIRMACIÓN === */ Animaciones para la página de confirmación */
 .checkmark-container {
   display: flex;
   justify-content: center;

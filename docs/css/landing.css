@@ -1,26 +1,145 @@
-:root {
-  --bg-color: #0b1020;
-  --text-color: #e5e7eb;
-  --accent-color: #8b5cf6;
-  --button-bg: linear-gradient(135deg, var(--accent-color), #22d3ee);
-  --border-radius: 12px;
-}
-
 /* landing.css - Estilos específicos para la landing page */
 
-/* Hero Section */
-#hero {
+/* === VARIABLES BASADAS EN PROPORCIÓN ÁUREA === */
+:root {
+  /* Secuencia de Fibonacci para tamaños (px) */
+  --fib-8: 8px;
+  --fib-13: 13px;
+  --fib-21: 21px;
+  --fib-34: 34px;
+  --fib-55: 55px;
+  --fib-89: 89px;
+  --fib-144: 144px;
+  --fib-233: 233px;
+  
+  /* Proporción áurea */
+  --golden-ratio: 1.618;
+  --golden-inverse: 0.618;
+  
+  /* Tamaños basados en proporción áurea */
+  --space-phi-xs: calc(var(--fib-8) * var(--golden-inverse)); /* ~5px */
+  --space-phi-sm: var(--fib-8); /* 8px */
+  --space-phi-md: var(--fib-13); /* 13px */
+  --space-phi-lg: var(--fib-21); /* 21px */
+  --space-phi-xl: var(--fib-34); /* 34px */
+  --space-phi-2xl: var(--fib-55); /* 55px */
+  --space-phi-3xl: var(--fib-89); /* 89px */
+  
+  /* Tipografía con proporción áurea */
+  --font-phi-xs: calc(var(--fib-13) * 1rem / 16); /* ~0.81rem */
+  --font-phi-sm: calc(var(--fib-21) * 1rem / 16); /* ~1.31rem */
+  --font-phi-md: calc(var(--fib-34) * 1rem / 16); /* ~2.125rem */
+  --font-phi-lg: calc(var(--fib-55) * 1rem / 16); /* ~3.44rem */
+  
+  /* Radios con proporción áurea */
+  --radius-phi-sm: var(--fib-8);
+  --radius-phi-md: var(--fib-13);
+  --radius-phi-lg: var(--fib-21);
+  --radius-phi-xl: var(--fib-34);
+}
+
+/* === LAYOUT DEL LIBRO === */
+/* Reset y body específicos para landing */
+body {
+  height: 100vh;
+  overflow: hidden;
+  font-family: var(--font-fantasy-body), 'Georgia', 'Times New Roman', serif;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+}
+
+/* Contenedor principal del libro */
+.book-container {
   position: relative;
-  text-align: center;
-  padding: 2rem;
-  background: linear-gradient(135deg, 
-    rgba(59, 44, 154, 0.1) 0%, 
-    rgba(108, 240, 243, 0.05) 50%, 
-    rgba(242, 240, 255, 0.1) 100%);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-container.wedding-bg-fullscreen {
+  background: radial-gradient(circle at center, rgba(59, 44, 154, 0.15), rgba(0, 0, 0, 0.95));
+  min-height: 100vh;
+  width: 100vw;
+}
+
+/* Imagen de fondo del libro */
+.book-background {
+  position: relative;
+  width: 100vh;
+  height: 100vh;
+  margin: auto;
+  background-image: url('../assets/images/Gemini_Generated_Image_s0d5q7s0d5q7s0d5.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: var(--radius-phi-lg); /* 21px con proporción áurea */
+  z-index: 1;
+}
+
+/* Contenedor de las páginas del libro */
+.book-pages {
+  position: absolute;
+  width: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.left-page, .right-page {
+  pointer-events: auto;
+}
+
+/* Página izquierda - nombres ya están en la imagen */
+.left-page {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Página derecha - botones */
+.right-page {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  padding: 0 calc(var(--space-phi-xl) * var(--golden-ratio)) 0 calc(var(--space-phi-xl) + var(--space-phi-md));
+  /* Ajuste con proporción áurea para compensar el lomo y centrar visualmente */
+}
+
+/* === BOTONES DE ACCIÓN === */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-phi-xl); /* 34px gap más amplio para textos */
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(var(--space-phi-xl)); /* 34px usando Fibonacci */
+  animation: fadeInUp 1.2s ease-out 0.3s forwards;
+  max-width: 100%; /* Ancho completo para mejor distribución */
+  width: 100%;
+  position: relative;
+  padding: var(--space-phi-2xl) var(--space-phi-lg); /* Padding interno generoso */
+}
+
+.action-buttons::before {
+  /* Eliminar decoración dorada */
+  display: none;
 }
 
 .hero-content {
@@ -34,11 +153,11 @@
 .main-content {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-radius: 24px;
-  padding: 3rem 2rem;
+  border-radius: calc(var(--radius-phi-lg) * var(--golden-ratio)); /* ~34px con proporción áurea */
+  padding: calc(var(--space-phi-2xl) * var(--golden-ratio)) var(--space-phi-xl); /* ~89px 34px con Fibonacci */
   box-shadow: 
-    0 20px 60px rgba(59, 44, 154, 0.15),
-    0 8px 32px rgba(108, 240, 243, 0.1);
+    0 var(--space-phi-lg) var(--fib-89) rgba(59, 44, 154, 0.15), /* 0 21px 89px */
+    0 var(--space-phi-sm) var(--space-phi-xl) rgba(108, 240, 243, 0.1); /* 0 8px 34px */
   border: 1px solid rgba(255, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
@@ -50,92 +169,102 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
+  height: calc(var(--space-phi-xs) * var(--golden-inverse)); /* ~3px con proporción áurea */
   background: var(--gradient-primary);
 }
 
 /* Etiqueta de invitación */
 .invitation-label {
-  font-family: var(--font-script);
-  font-size: 1.25rem;
+  font-family: var(--font-fantasy-script-elegant), 'Great Vibes', cursive;
+  font-size: calc(var(--font-phi-sm) * var(--golden-ratio)); /* ~2.12rem más grande y mágico */
   color: var(--primary-violet);
-  margin-bottom: 1.5rem;
+  margin-bottom: calc(var(--space-phi-lg) * var(--golden-inverse)); /* ~13px */
   opacity: 1;
   transform: translateY(0);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra mágica */
+  letter-spacing: 0.02em;
 }
 
 /* Contenedor de la pareja */
 .couple-container {
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-phi-xl); /* 34px con Fibonacci */
 }
 
 /* Imagen de la pareja */
 .hero-img {
-  width: 150px;
-  height: 150px;
+  width: var(--fib-144); /* 144px con Fibonacci */
+  height: var(--fib-144); /* 144px con Fibonacci */
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 8px 32px rgba(59, 44, 154, 0.3);
-  border: 3px solid var(--primary-cyan);
+  margin-bottom: calc(var(--space-phi-lg) * var(--golden-inverse)); /* ~13px */
+  box-shadow: 0 var(--space-phi-sm) var(--space-phi-xl) rgba(59, 44, 154, 0.3); /* 0 8px 34px */
+  border: calc(var(--space-phi-xs) * var(--golden-inverse)) solid var(--primary-cyan); /* ~3px */
   opacity: 1;
   transform: scale(1);
 }
 
 /* Nombres de la pareja */
 .couple-names {
-  font-family: var(--font-heading);
-  font-size: 3.5rem;
-  font-weight: 800;
-  margin-bottom: 1.5rem;
+  font-family: var(--font-fantasy-primary), 'Cinzel', serif;
+  font-size: var(--font-phi-lg); /* ~3.44rem con proporción áurea */
+  font-weight: 700;
+  margin-bottom: calc(var(--space-phi-lg) * var(--golden-inverse)); /* ~13px */
   background: var(--gradient-primary);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.05em; /* Espaciado ceremonial */
   opacity: 1;
   transform: translateY(0);
-  line-height: 1.1;
+  line-height: calc(1 / var(--golden-ratio)); /* ~0.618 línea áurea */
+  text-transform: uppercase;
+  font-variant: small-caps; /* Efecto majestuoso */
+  text-shadow: 0 4px 8px rgba(59, 44, 154, 0.3); /* Sombra mágica */
 }
 
 /* Detalles de la boda */
 .wedding-details {
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-phi-xl); /* 34px con Fibonacci */
   opacity: 1;
   transform: translateY(0);
 }
 
 .wedding-date {
-  font-family: var(--font-script);
-  font-size: 2rem;
+  font-family: var(--font-fantasy-ornate), 'Crimson Text', serif;
+  font-size: var(--font-phi-md); /* ~2.125rem con proporción áurea */
   font-weight: 600;
+  font-style: italic; /* Toque elegante */
   color: var(--primary-violet);
-  margin-bottom: 1rem;
+  margin-bottom: calc(var(--space-phi-md) * var(--golden-inverse)); /* ~8px */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.03em;
 }
 
 .wedding-location,
 .wedding-time {
-  font-family: var(--font-primary);
-  font-size: 1.125rem;
+  font-family: var(--font-fantasy-body), 'Cormorant Garamond', serif;
+  font-size: calc(var(--font-phi-sm) * var(--golden-inverse)); /* ~0.81rem */
   color: var(--text-dark);
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-phi-sm); /* 8px con Fibonacci */
   font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
 /* Mensaje de invitación */
 .invitation-message {
-  margin-bottom: 2.5rem;
+  margin-bottom: calc(var(--space-phi-xl) + var(--space-phi-lg)); /* ~55px */
   opacity: 1;
   transform: translateY(0);
 }
 
 .invitation-message p {
-  font-family: var(--font-primary);
-  font-size: 1.125rem;
+  font-family: var(--font-fantasy-body), 'Cormorant Garamond', serif;
+  font-size: calc(var(--font-phi-sm) * var(--golden-inverse)); /* ~0.81rem */
   color: var(--text-dark);
-  line-height: 1.6;
-  margin-bottom: 0.5rem;
+  line-height: var(--golden-ratio); /* 1.618 línea áurea */
+  margin-bottom: var(--space-phi-sm); /* 8px */
   font-weight: 400;
+  letter-spacing: 0.015em; /* Espaciado elegante */
 }
 
 /* Botones de acción */
@@ -149,65 +278,6 @@
   transform: translateY(0); /* Resetear transform inicial */
 }
 
-/* Botones CTA */
-.cta-btn {
-  font-family: var(--font-primary);
-  font-size: 1.125rem;
-  font-weight: 600;
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-  text-transform: none;
-  letter-spacing: 0.01em;
-  min-width: 200px;
-  opacity: 1; /* Forzar visibilidad */
-  transform: translateY(0); /* Resetear transform */
-}
-
-.cta-btn.primary {
-  background: linear-gradient(135deg, #3b2c9a, #6cf0f3) !important;
-  color: white !important;
-  box-shadow: 0 8px 24px rgba(59, 44, 154, 0.3);
-  border: none !important;
-}
-
-.cta-btn.secondary {
-  background: rgba(108, 240, 243, 0.15) !important;
-  color: #3b2c9a !important;
-  border: 2px solid #6cf0f3 !important;
-  box-shadow: 0 4px 16px rgba(108, 240, 243, 0.2);
-}
-
-.cta-btn:hover {
-  transform: translateY(-4px);
-}
-
-.cta-btn.primary:hover {
-  box-shadow: 0 12px 40px rgba(59, 44, 154, 0.4);
-}
-
-.cta-btn.secondary:hover {
-  background: rgba(108, 240, 243, 0.2);
-  box-shadow: 0 8px 24px rgba(108, 240, 243, 0.3);
-}
-
-.cta-btn:active {
-  transform: translateY(-2px);
-}
-
-.btn-icon {
-  font-size: 1.25rem;
-}
-
 /* Enlaces rápidos */
 .quick-links {
   display: flex;
@@ -219,7 +289,7 @@
 }
 
 .quick-link {
-  font-family: var(--font-primary);
+  font-family: var(--font-fantasy-body, 'Cormorant Garamond', 'Georgia', serif);
   font-size: 0.95rem;
   font-weight: 500;
   color: var(--primary-violet);
@@ -334,11 +404,6 @@
     align-items: center;
   }
   
-  .cta-btn {
-    width: 100%;
-    max-width: 280px;
-  }
-  
   .quick-links {
     flex-direction: column;
     align-items: center;
@@ -380,12 +445,6 @@
     font-size: 1rem;
   }
   
-  .cta-btn {
-    font-size: 1rem;
-    padding: 0.875rem 1.5rem;
-    min-width: auto;
-  }
-  
   .quick-link {
     font-size: 0.875rem;
     padding: 0.625rem 0.875rem;
@@ -398,12 +457,10 @@
     animation: none;
   }
   
-  .cta-btn,
   .quick-link {
     transition: none;
   }
   
-  .cta-btn:hover,
   .quick-link:hover {
     transform: none;
   }
@@ -527,11 +584,6 @@
     margin-bottom: 2rem;
   }
   
-  #rsvp-button, .cta-btn {
-    padding: 0.875rem 2rem;
-    font-size: var(--font-size-base);
-  }
-  
   .decoration {
     opacity: 0.4;
   }
@@ -559,10 +611,5 @@
   
   #hero-subtitle {
     font-size: var(--font-size-base);
-  }
-  
-  #rsvp-button, .cta-btn {
-    padding: 0.75rem 1.5rem;
-    font-size: var(--font-size-sm);
   }
 }

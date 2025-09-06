@@ -1,0 +1,135 @@
+/* buttons.css - Todos los estilos de botones centralizados */
+
+/* === BOTONES BASE GLOBALES === */
+/* Estilo base para todos los botones - texto puro sin fondos */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  border: none;
+  background: none; /* Sin fondo */
+  font-family: var(--font-fantasy-elegant, 'Cinzel', serif);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  color: #3b2c9a; /* Azul mágico por defecto */
+  min-width: 160px;
+  text-transform: uppercase;
+  font-variant: small-caps;
+}
+
+.btn:hover {
+  color: #2d1b69; /* Azul más oscuro en hover */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* === BOTONES CTA ESPECÍFICOS === */
+/* Estilos base de botones CTA - Solo texto sin fondo */
+.cta-btn {
+  /* Eliminar todos los fondos y efectos */
+  background: none;
+  border: none;
+  box-shadow: none;
+  
+  /* Solo estilos de texto */
+  color: #3b2c9a; /* Color base fantástico (azul violeta) */
+  padding: var(--space-phi-lg) var(--space-phi-md); /* 21px 13px espaciado áureo */
+  font-size: calc(var(--font-phi-sm) * var(--golden-ratio)); /* ~2.12rem más grande */
+  font-weight: 600;
+  font-family: var(--font-fantasy-primary), 'Cinzel', 'Georgia', serif;
+  letter-spacing: 0.05em; /* Espaciado ceremonial */
+  text-transform: uppercase;
+  font-variant: small-caps; /* Efecto majestuoso */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: block; /* Cambiado a block para mejor espaciado */
+  text-align: center;
+  position: relative;
+  /* Sombra de texto sutil para legibilidad */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.cta-btn::before {
+  /* Eliminar efecto de shimmer */
+  display: none;
+}
+
+.cta-btn:hover::before {
+  /* Eliminar efecto de shimmer */
+  display: none;
+}
+
+.cta-btn:hover {
+  /* Solo cambios de texto en hover, sin efectos de fondo */
+  transform: none; /* Eliminar movimiento */
+  box-shadow: none; /* Sin sombras */
+  background: none; /* Sin fondo */
+  color: #1a1a2e; /* Color más oscuro en hover */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra de texto más marcada */
+}
+
+/* === VARIANTES DE COLOR CTA === */
+/* Botón primario - Azul fantástico */
+.cta-btn.primary {
+  color: #3b2c9a; /* Azul violeta mágico */
+}
+
+.cta-btn.primary:hover {
+  color: #2d1b69; /* Azul más oscuro en hover */
+}
+
+/* Botón secundario - Marrón fantástico */
+.cta-btn.secondary {
+  color: #8b4513; /* Marrón cálido */
+}
+
+.cta-btn.secondary:hover {
+  color: #654321; /* Marrón más oscuro en hover */
+}
+
+/* Botón terciario - Verde fantástico */
+.cta-btn.tertiary {
+  color: #2e8b57; /* Verde bosque mágico */
+}
+
+.cta-btn.tertiary:hover {
+  color: #1e5f3f; /* Verde más oscuro en hover */
+}
+
+/* === ICONOS DE BOTONES === */
+.btn-icon {
+  font-size: calc(var(--font-phi-sm) * var(--golden-ratio)); /* ~2.12rem para que coincida con el texto */
+  margin-right: var(--space-phi-sm); /* 8px separación del texto */
+  vertical-align: middle;
+  display: inline-block;
+  /* Eliminar todos los efectos de brillo y sombras */
+  filter: none;
+  text-shadow: none;
+  opacity: 1;
+}
+
+/* === RESPONSIVE PARA BOTONES === */
+@media (max-width: 768px) {
+  .btn {
+    padding: 0.65rem 1.5rem;
+    font-size: var(--font-size-sm);
+    min-width: 140px;
+  }
+  
+  .cta-btn {
+    padding: var(--fib-mobile-13) var(--fib-mobile-8); /* ~13px 8px */
+    font-size: calc(var(--fib-mobile-21) * 1rem / 16); /* ~1.31rem */
+    font-weight: 600;
+    letter-spacing: 0.03em; /* Espaciado reducido para móvil */
+  }
+  
+  .btn-icon {
+    font-size: 1.2rem; /* Tamaño reducido en móvil */
+    margin-right: 0.5rem;
+  }
+}

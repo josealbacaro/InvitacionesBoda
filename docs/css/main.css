@@ -1,7 +1,7 @@
-/* main.css - Estilos principales con paleta violeta/cian */
+/* main.css - Estilos globales y fundamentales */
 
 :root {
-  /* Paleta de colores "vibe coding" */
+  /* === PALETA DE COLORES GLOBAL === */
   --primary-violet: #3b2c9a;
   --primary-cyan: #6cf0f3;
   --background-light: #f2f0ff;
@@ -11,15 +11,14 @@
   --accent-teal: #22d3ee;
   --gradient-primary: linear-gradient(135deg, var(--primary-violet), var(--primary-cyan));
   
-  /* Espaciado y diseño */
+  /* === ESPACIADO Y DISEÑO GLOBAL === */
   --border-radius: 12px;
   --border-radius-lg: 20px;
   --shadow-soft: 0 4px 20px rgba(59, 44, 154, 0.15);
   --shadow-strong: 0 8px 32px rgba(59, 44, 154, 0.25);
   --transition: all 0.3s ease;
   
-  /* Tipografía */
-  --font-primary: 'CustomFont', 'Inter', sans-serif;
+  /* === TIPOGRAFÍA GLOBAL === */
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
@@ -30,14 +29,16 @@
   --font-size-4xl: 2.5rem;
 }
 
+/* === RESET GLOBAL === */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* === ESTILOS DE BODY GLOBAL === */
 body {
-  font-family: var(--font-primary);
+  font-family: var(--font-fantasy-body);
   background-color: var(--background-light);
   color: var(--text-dark);
   line-height: 1.6;
@@ -45,7 +46,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Contenedores */
+/* === CONTENEDORES GLOBALES === */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -54,58 +55,7 @@ body {
   z-index: 10;
 }
 
-/* Fondo de partículas */
-#particles-js-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Botones base */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 2rem;
-  border: none;
-  border-radius: var(--border-radius);
-  font-family: var(--font-primary);
-  font-size: var(--font-size-base);
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  transition: var(--transition);
-  box-shadow: var(--shadow-soft);
-  min-width: 160px;
-}
-
-.btn-primary {
-  background: var(--gradient-primary);
-  color: var(--text-light);
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-strong);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var(--primary-violet);
-  border: 2px solid var(--primary-violet);
-}
-
-.btn-secondary:hover {
-  background: var(--primary-violet);
-  color: var(--text-light);
-  transform: translateY(-2px);
-}
-
-/* Headers y textos */
+/* === TIPOGRAFÍA GLOBAL === */
 h1, h2, h3, h4, h5, h6 {
   color: var(--primary-violet);
   font-weight: 700;
@@ -130,7 +80,7 @@ p {
   color: var(--text-dark);
 }
 
-/* Links */
+/* === ENLACES GLOBALES === */
 a {
   color: var(--primary-violet);
   transition: var(--transition);
@@ -140,7 +90,7 @@ a:hover {
   color: var(--primary-cyan);
 }
 
-/* Utilidades */
+/* === CLASES UTILITARIAS GLOBALES === */
 .text-center {
   text-align: center;
 }
@@ -149,6 +99,7 @@ a:hover {
   color: var(--text-light);
 }
 
+/* Espaciado vertical */
 .mb-1 { margin-bottom: 0.25rem; }
 .mb-2 { margin-bottom: 0.5rem; }
 .mb-3 { margin-bottom: 1rem; }
@@ -161,7 +112,7 @@ a:hover {
 .mt-4 { margin-top: 1.5rem; }
 .mt-5 { margin-top: 2rem; }
 
-/* Responsive */
+/* === RESPONSIVE GLOBAL === */
 @media (max-width: 768px) {
   .container {
     padding: 1rem;
@@ -173,10 +124,5 @@ a:hover {
   
   h2 {
     font-size: var(--font-size-2xl);
-  }
-  
-  .btn {
-    padding: 0.65rem 1.5rem;
-    font-size: var(--font-size-sm);
   }
 }

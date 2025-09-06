@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¡Confirmación Recibida! | Jose & [Nombre]</title>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/buttons.css">
     <link rel="stylesheet" href="../css/animations.css">
     <link rel="stylesheet" href="../css/responsive.css">
     <link rel="stylesheet" href="../css/background-gradient.css">
     <link rel="stylesheet" href="../assets/fonts/custom-fonts.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
     <script src="../lib/anime.min.js"></script>
 </head>
 <body class="wedding-bg-fullscreen">
@@ -29,11 +33,11 @@
             </div>
             
             <!-- Mensaje de agradecimiento -->
-            <h2 id="thank-you-msg" class="thank-you-title">
+            <h2 id="thank-you-msg" class="couple-names thank-you-title">
                 ¡Gracias por confirmar tu asistencia!
             </h2>
             
-            <p class="thank-you-subtitle">
+            <p class="enchanted-text thank-you-subtitle">
                 Hemos recibido tu confirmación correctamente. 
                 ¡Nos vemos el 16 de mayo de 2026!
             </p>
@@ -67,13 +71,15 @@
             
             <!-- Botones de acción -->
             <div class="action-buttons">
-                <button id="back-btn" class="btn btn-secondary" onclick="window.location.href='landing.html'">
-                    ← Volver a la invitación
-                </button>
+                <a href="landing.html" class="btn secondary">
+                    <span class="btn-icon">📖</span>
+                    Volver a la invitación
+                </a>
                 
-                <button id="info-btn" class="btn btn-primary" onclick="window.location.href='info.html'">
+                <a href="info.html" class="btn primary">
+                    <span class="btn-icon">ℹ️</span>
                     Más información
-                </button>
+                </a>
             </div>
         </main>
     </div>

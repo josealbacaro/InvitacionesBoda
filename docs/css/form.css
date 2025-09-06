@@ -11,7 +11,7 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-fantasy-body, 'Cormorant Garamond', 'Georgia', serif);
   background: var(--bg-color);
   margin: 0;
   padding: 20px;
@@ -71,7 +71,7 @@ body {
   padding: 0.875rem 1rem;
   border: 2px solid #e5e7eb;
   border-radius: var(--border-radius);
-  font-family: var(--font-primary);
+  font-family: var(--font-fantasy-body, 'Cormorant Garamond', 'Georgia', serif);
   font-size: var(--font-size-base);
   color: var(--text-dark);
   background-color: #ffffff;
@@ -124,36 +124,39 @@ body {
   min-height: 100px;
 }
 
-/* Botón de envío */
+/* Botón de envío - Estilo texto puro */
 .submit-btn {
   width: 100%;
-  background: var(--gradient-primary);
-  color: var(--text-light);
+  background: none; /* Sin fondo */
+  color: #3b2c9a; /* Azul mágico como primario */
   border: none;
-  padding: 1rem 2rem;
-  border-radius: var(--border-radius);
-  font-family: var(--font-primary);
-  font-size: var(--font-size-lg);
-  font-weight: 700;
+  padding: 1.5rem 2rem; /* Padding generoso */
+  font-family: var(--font-fantasy-elegant, 'Cinzel', serif);
+  font-size: 1.618rem; /* Tamaño áureo */
+  font-weight: 600;
+  letter-spacing: 0.05em;
   cursor: pointer;
-  transition: var(--transition);
-  box-shadow: var(--shadow-soft);
-  position: relative;
-  overflow: hidden;
+  transition: color 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  display: block;
 }
 
 .submit-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-strong);
+  color: #2d1b69; /* Azul más oscuro en hover */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: none; /* Sin movimiento */
+  box-shadow: none; /* Sin sombras */
 }
 
 .submit-btn:active {
-  transform: translateY(0);
+  color: #1a0f3d; /* Azul aún más oscuro al hacer clic */
 }
 
 .submit-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  color: #8b8b8b; /* Gris deshabilitado */
 }
 
 /* Estados del botón */
@@ -406,7 +409,7 @@ button:hover {
 }
 
 .nav-brand {
-  font-family: var(--font-heading);
+  font-family: var(--font-fantasy-primary);
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--primary-violet);
@@ -423,7 +426,7 @@ button:hover {
 }
 
 .nav-link {
-  font-family: var(--font-primary);
+  font-family: var(--font-fantasy-body, 'Cormorant Garamond', 'Georgia', serif);
   font-weight: 500;
   color: var(--text-dark);
   text-decoration: none;
@@ -453,7 +456,7 @@ button:hover {
 }
 
 .page-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-fantasy-primary);
   font-size: 3rem;
   font-weight: 800;
   color: var(--primary-violet);
@@ -465,7 +468,7 @@ button:hover {
 }
 
 .page-subtitle {
-  font-family: var(--font-primary);
+  font-family: var(--font-fantasy-body, 'Cormorant Garamond', 'Georgia', serif);
   font-size: 1.25rem;
   color: var(--text-dark);
   opacity: 0.8;
@@ -512,7 +515,7 @@ button:hover {
 }
 
 .card-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-fantasy-primary);
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--primary-violet);
@@ -520,7 +523,7 @@ button:hover {
 }
 
 .card-content {
-  font-family: var(--font-primary);
+  font-family: var(--font-fantasy-body, 'Cormorant Garamond', 'Georgia', serif);
 }
 
 .detail-primary {
@@ -562,7 +565,7 @@ button:hover {
 }
 
 .section-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-fantasy-primary);
   font-size: 2rem;
   font-weight: 700;
   color: var(--primary-violet);
@@ -626,7 +629,7 @@ button:hover {
 }
 
 .timeline-content h4 {
-  font-family: var(--font-heading);
+  font-family: var(--font-fantasy-primary);
   font-size: 1.125rem;
   font-weight: 600;
   color: var(--primary-violet);
@@ -634,7 +637,7 @@ button:hover {
 }
 
 .timeline-content p {
-  font-family: var(--font-primary);
+  font-family: var(--font-fantasy-body, 'Cormorant Garamond', 'Georgia', serif);
   color: var(--text-dark);
   opacity: 0.8;
   margin: 0;
@@ -655,7 +658,7 @@ button:hover {
 }
 
 .footer p {
-  font-family: var(--font-primary);
+  font-family: var(--font-fantasy-body, 'Cormorant Garamond', 'Georgia', serif);
   color: var(--text-dark);
   opacity: 0.6;
   margin: 0;
