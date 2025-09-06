@@ -131,8 +131,8 @@ body {
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  opacity: 0;
-  transform: translateY(var(--space-phi-xl)); /* 34px usando Fibonacci */
+  opacity: 1; /* Hacer visible por defecto */
+  transform: translateY(0); /* Sin desplazamiento inicial */
   animation: fadeInUp 1.2s ease-out 0.3s forwards;
   max-width: 100%; /* Ancho completo para mejor distribución */
   width: 100%;
