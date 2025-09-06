@@ -83,7 +83,12 @@ body {
 /* Contenedor de las páginas del libro */
 .book-pages {
   position: absolute;
-  width: 50%;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  max-width: 100vh; /* Nunca más grande que el libro */
+  max-height: 100vh; /* Nunca más alto que el libro */
   transform: translate(-50%, -50%);
   display: flex;
   align-items: stretch;
@@ -116,8 +121,9 @@ body {
   align-items: center;
   position: relative;
   box-sizing: border-box;
-  padding: 0 calc(var(--space-phi-xl) * var(--golden-ratio)) 0 calc(var(--space-phi-xl) + var(--space-phi-md));
-  /* Ajuste con proporción áurea para compensar el lomo y centrar visualmente */
+  padding: var(--space-phi-xl);
+  max-width: 50vh; /* Nunca más ancho que la mitad del libro */
+  overflow: hidden; /* Evitar desbordamiento */
 }
 
 /* === BOTONES DE ACCIÓN === */
@@ -131,10 +137,11 @@ body {
   opacity: 0;
   transform: translateY(var(--space-phi-xl)); /* 34px usando Fibonacci */
   animation: fadeInUp 1.2s ease-out 0.3s forwards;
-  max-width: 100%; /* Ancho completo para mejor distribución */
   width: 100%;
+  max-width: calc(50vh - var(--space-phi-2xl)); /* Nunca más ancho que la mitad del libro menos padding */
   position: relative;
-  padding: var(--space-phi-2xl) var(--space-phi-lg); /* Padding interno generoso */
+  padding: var(--space-phi-lg); /* Padding más moderado */
+  box-sizing: border-box;
 }
 
 .action-buttons::before {
@@ -611,5 +618,35 @@ body {
   
   #hero-subtitle {
     font-size: var(--font-size-base);
+  }
+}
+
+/* === MEDIA QUERIES PARA PANTALLAS GRANDES === */
+/* Controlar el tamaño máximo del libro en pantallas muy grandes */
+@media (min-width: 1400px) {
+  .book-background {
+    width: 90vh;
+    height: 90vh;
+    max-width: 1000px;
+    max-height: 1000px;
+  }
+  
+  .book-pages {
+    max-width: 90vh;
+    max-height: 90vh;
+  }
+}
+
+@media (min-width: 1920px) {
+  .book-background {
+    width: 80vh;
+    height: 80vh;
+    max-width: 900px;
+    max-height: 900px;
+  }
+  
+  .book-pages {
+    max-width: 80vh;
+    max-height: 80vh;
   }
 }

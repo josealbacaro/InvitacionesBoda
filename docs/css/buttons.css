@@ -52,6 +52,13 @@
   position: relative;
   /* Sombra de texto sutil para legibilidad */
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  /* Controlar tamaño máximo */
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .cta-btn::before {
